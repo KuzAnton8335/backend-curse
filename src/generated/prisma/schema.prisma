@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid()) // поле индификатора пользователя
+  createdAt DateTime  @default(now())
+  username  String    @unique
+  password  String
+  products  Product[]
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  name        String   @db.VarChar(255)
+  belongsToId String
+  belongsTo   User     @relation(fields: [belongsToId], references: [id])
+  Update      Update[]
+}
+
+// status updated (constans)
+enum UPDATE_STATUS {
+  IN_PROGRESS
+  SHIPPED
+  DEPECREATED
+}
+
+model Update {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime
+  // заголовок статус тело постов при обновлении
+  title        String
+  body         String
+  status       UPDATE_STATUS @default(IN_PROGRESS)
+  version      String?
+  asset        String?
+  // индификатор продукта
+  productId    String
+  product      Product       @relation(fields: [productId], references: [id])
+  UpdatePoints UpdatePoint[]
+}
+
+model UpdatePoint {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  // точка обновления
+  name        String @db.VarChar(255)
+  description String
+
+  updateId String
+  update   Update @relation(fields: [updateId], references: [id])
+}

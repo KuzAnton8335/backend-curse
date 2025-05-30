@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"emitDecoratorMetadata": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"types": [
+			"node"
+		],
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true
+	}
+}
