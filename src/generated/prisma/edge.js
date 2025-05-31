@@ -164,7 +164,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\User\\Desktop\\project-repozitoris\\backend-curses\\src\\generated\\prisma",
+      "value": "D:\\project\\backend-curse\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -178,11 +178,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\User\\Desktop\\project-repozitoris\\backend-curses\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\project\\backend-curse\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -192,6 +192,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

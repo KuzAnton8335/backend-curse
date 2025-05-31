@@ -1,4 +1,6 @@
+import * as dotenv from "dotenv";
 import app from "./server";
+dotenv.config();
 
 // Start the server
 const PORT = 3001;

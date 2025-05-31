@@ -1,6 +1,8 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import { createNewUser, signin } from "./handlers/user";
+import { protect } from "./modules/auth";
 import router from "./routes";
 
 // api express
@@ -32,6 +34,11 @@ app.get("/", (req, res) => {
 });
 
 // подключение api
-app.use("/api", router);
+app.use("/api", protect, router);
+
+// добавление нового пользователя
+app.post("/user", createNewUser);
+// вход пользователя
+app.post("/signin", signin);
 
 export default app;
