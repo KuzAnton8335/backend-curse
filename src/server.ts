@@ -35,7 +35,6 @@ app.get("/", (req, res) => {
 
 // подключение api
 app.use("/api", protect, router);
-
 // добавление нового пользователя
 app.post("/user", createNewUser);
 // вход пользователя

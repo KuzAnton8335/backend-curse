@@ -1,5 +1,6 @@
 import { Router } from "express";
-
+import { body, validationResult } from "express-validator";
+// остановился на видео №29
 const router = Router();
 
 /*Products*/
@@ -13,7 +14,15 @@ router.get("/product", (req, res) => {
 router.get("/product/:id", () => {});
 
 // обнвление продукта по его id (уникальному индификатору)
-router.put("/product/:id", () => {});
+router.put("/product/:id", body("name").isString(), (req, res) => {
+  const errors = validationResult(req);
+  console.log(errors);
+
+  if (!errors.isEmpty()) {
+    res.status(400);
+    res.json({ errors: errors.array() });
+  }
+});
 
 // создание нового продукта
 router.post("/product", () => {});
